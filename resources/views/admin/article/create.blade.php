@@ -1,9 +1,5 @@
 @extends('admin.layouts.default')
 @section('header_js')
-<!-- <script src="{{url('js/ckeditor/ckeditor.js')}}"></script>
-<script src="{{url('js/ckeditor/samples/js/sample.js')}}"></script>
-<link rel="stylesheet" href="{{url('js/ckeditor/samples/css/samples.css')}}">
-<link rel="stylesheet" href="{{url('js/ckeditor/samples/toolbarconfigurator/lib/codemirror/neo.css')}}"> -->
 @stop
 @section('header_css')
 @include('admin.layouts.css')
@@ -64,24 +60,9 @@
 			<input  class="form-control" name="slug" id="editor"></input>
 		</div>
 
-
-
-<!--
-
-
-		<div class="form-group">
-			<label for="body">بدنه</label>
-			<textarea  class="form-control" name="body" id="editor2"></textarea>
-		</div>
-		
-		-->
-
 		<textarea name="body" id="body" rows="10" cols="80">
 توضیحات مربوط به محصول را د ر این قسمت وارد نمایید!
 </textarea>
-
-
-
 
 		<div class="form-gorup">
 			<label for="">تصویر</label>
@@ -92,55 +73,13 @@
 </div>
 
 
-<script>
- var CKEDITOR_BASEPATH = '../../js/ckeditor/';
-
-
-</script>
-<script>
-	// CKEDITOR.replace('body', {
-     //language: 'fa',
-     // uiColor: '#9AB8F3',
-     // customConfig: '/custom/ckeditor_config.js'
- //});
-	//initSample();
-</script>
-
 @stop
 
 
 @section('footer_js')
-<script src="{{asset('js/admin_app_witheditor.js')}}"></script>
-
-<script>
-
-
-
-   CKEDITOR.replace('body', {
-     language: 'en',
-	 
-	 
-     // uiColor: '#9AB8F3',
-     // customConfig: '/custom/ckeditor_config.js'
- });
- 
-</script>
 
 @stop
 
 @section('footer')
-<!--
-<script src="{{url('js/ckeditor/ckeditor.js')}}"></script>
-<script src="{{url('js/ckeditor/translations/fa.js')}}"></script>
-<script>
-ClassicEditor
-.create( document.querySelector( '#editor' ),{
-			language: 'fa',
-			dir:'rtl'
-		} )
-.catch( error => {
-console.error( error );
-} );
-</script>-->
 
 @stop

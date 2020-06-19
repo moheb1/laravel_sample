@@ -10928,3 +10928,32 @@ a.text-dark:focus {
   }
 }
 
+div#front-navigation {
+  display: flex;
+  justify-content: space-around;
+  width: 500px;
+  margin: auto;
+}
+
+#create_article_form {
+  text-align: right;
+}
+
+body {
+  direction: rtl;
+  text-align: right;
+}
+
+#article img {
+  width: 100%;
+}
+
+#article_body {
+  text-align: right;
+}
+
+textarea {
+  border: 1px solid #ced4da;
+  width: 100%;
+}
+

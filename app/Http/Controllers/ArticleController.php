@@ -13,8 +13,11 @@ class ArticleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //
+    {  		
+
+        $articles = \App\Article::paginate(12);
+        
+        return view('front.article.index', compact('articles'));
     }
 
     /**
@@ -24,7 +27,7 @@ class ArticleController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.article.create');
     }
 
     /**
@@ -35,7 +38,21 @@ class ArticleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+          $image     = $request->file('image');
+        $imagename = time() . "-" . rand() . ".jpg";
+        $image->move('images/articles', $imagename);
+$user=\Auth::user();
+    $article=Article::create([
+
+'title'=>$request->name,
+'body'=>$request->body,
+'image'=>$imagename,
+'owner_id'=>$user->id
+
+       ]);
+$article->save();
+return redirect('admin/articles');
+       
     }
 
     /**
@@ -46,7 +63,8 @@ class ArticleController extends Controller
      */
     public function show(Article $article)
     {
-        //
+        $article=Article::find($article->id);
+        return view('front.article.show',compact('article'));
     }
 
     /**
@@ -57,7 +75,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        //
+       
     }
 
     /**
@@ -81,5 +99,14 @@ class ArticleController extends Controller
     public function destroy(Article $article)
     {
         //
+    }
+
+        public function articlesmanagement()
+    {
+
+        $articles = \App\Article::all();
+
+        return view('admin.article.articlesmanagement', compact('articles'));
+
     }
 }

@@ -2,6 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
+
+use Spatie\Permission\Models\Role;
+
+
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +29,28 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    
+    public function dashboard()
+    {
+        
+//         $user=Auth::user();
+//         // Adding permissions to a user
+// $user->givePermissionTo('edit articles');
+
+// // Adding permissions via a role
+// $user->assignRole('writer');
+
+// $role = Role::findByName('writer');
+
+// $role->givePermissionTo('edit articles');
+        $user = \Auth::user();
+        return view('admin.dashboard', compact('user'));
+    }
+
+    public function logout(){
+         Auth::logout();
+        return redirect('/');
     }
 }

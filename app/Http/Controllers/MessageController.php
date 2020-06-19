@@ -24,7 +24,7 @@ class MessageController extends Controller
      */
     public function create()
     {
-        //
+             return view('admin.message.create');
     }
 
     /**
@@ -35,7 +35,16 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user=\Auth::user();
+                
+    $message=Message::create([
+'title'=>$request->name,
+'body'=>$request->body,
+'owner_id'=>$user->id
+       ]);
+$message->save();
+       
+    
     }
 
     /**
@@ -46,7 +55,8 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+       $message=Message::find($message->id);
+       return view('admin.message.show',compact('message'));
     }
 
     /**
@@ -57,7 +67,8 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
+         $message=Message::find($message->id);
+        return view('admin.message.edit',compact('message'));
     }
 
     /**
@@ -69,7 +80,14 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+       $message=Message::find($message->id);
+       $message->update([
+            'body'=>$request->body,
+            
+
+
+       ]);
+       return redirect('/admin/messages');
     }
 
     /**
@@ -80,6 +98,32 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+       $message= Message::find($message->id);
+       $message->delete();
+        return redirect('admin/messages');
+    }
+
+
+          public function messagesmanagement()
+    {
+        
+        $user=\Auth::user();
+        // return $user;
+        // return  $messages = \App\Message::where('owner_id',$user->id)->get();
+;
+        if($user->hasRole('admin')){
+             $messages = \App\Message::all();
+        }
+        else if($user->hasRole('user')){
+            $messages = \App\Message::where('owner_id',$user->id)->get();
+        }
+          else if($user->hasRole('writer')){
+            $messages = \App\Message::where('owner_id',$user->id)->get();
+        }
+
+       
+
+        return view('admin.message.messagesmanagement', compact('messages','user'));
+
     }
 }

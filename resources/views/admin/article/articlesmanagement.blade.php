@@ -1,11 +1,10 @@
- @extends('admin.layouts.default')
+ @extends('layouts.default')
 
 @section('header_js')
 
 @stop
 
 @section('header_css')
-@include('admin.layouts.css')
 @stop
 
 @section('header')
@@ -62,8 +61,8 @@
     </table>
 	@stop
 
-@section('admin.layouts.footer')
-@include('admin.layouts.footer_js')
+@section('layouts.footer')
+@include('layouts.footer_js')
 @stop
 
 

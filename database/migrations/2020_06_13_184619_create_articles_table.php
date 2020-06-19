@@ -17,8 +17,11 @@ class CreateArticlesTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('body');
+            $table->bigInteger('owner_id')->unsigned()->index();
             $table->string('image');
             $table->timestamps();
+            $table->foreign('owner_id')->references('id')->on('users');
+            // $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -29,6 +32,7 @@ class CreateArticlesTable extends Migration
      */
     public function down()
     {
+        // $table->dropForeign('owner_id');
         Schema::dropIfExists('articles');
     }
 }

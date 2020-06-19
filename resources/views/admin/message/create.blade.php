@@ -5,6 +5,19 @@
 
 @stop
 @section('main_content')
+<!-- /resources/views/post/create.blade.php -->
+
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+<!-- Create Post Form -->
 <div class="col-lg-8" style="float:right" id="create_message_form">
 	<form method="post" style="direction:rtl" enctype="multipart/form-data" action="{{url('admin/messages/create')}}">
 		{{csrf_field()}}

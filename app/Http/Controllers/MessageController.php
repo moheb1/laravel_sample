@@ -35,11 +35,16 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
+      $validatedData = $request->validate([
+        
+        'body' => 'required|max:500|min:100',
+    ]);
+    return $validatedData;
         $user=\Auth::user();
                 
     $message=Message::create([
-'title'=>$request->name,
-'body'=>$request->body,
+// 'title'=>$request->name,
+'body'=>$validatedData->body,
 'owner_id'=>$user->id
        ]);
 $message->save();
